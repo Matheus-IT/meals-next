@@ -9,36 +9,26 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// import { useEffect, useState } from "react";
+interface Recipe {
+  name: string;
+  image: string;
+  servings: number;
+  prepTimeMinutes: number;
+  cookTimeMinutes: number;
+}
 
-export default function Home() {
-  // const [recipes, setRecipes] = useState([]);
-
-  // useEffect(() => {
-  //   console.log("useEffect");
-
-  //   async function getRecipes() {
-  //     const res = await fetch("https://dummyjson.com/recipes");
-  //     const data = await res.json();
-  //     if (data) {
-  //       console.log("data", data);
-
-  //       // setRecipes(data);
-  //     }
-  //   }
-
-  //   getRecipes();
-  // }, []);
+const getRecipes = async () => {
+  const res = await fetch("https://dummyjson.com/recipes");
+  const data = await res.json();
+  if (data) {
+    console.log("data", data);
+    return data.recipes;
+  }
+};
+export default async function Home() {
+  const recipes: Recipe[] = await getRecipes();
 
   const cuisines: string[] = ["b1", "b2", "b3"];
-  const recipes = [
-    {
-      name: "one",
-      servings: 2,
-      prepTimeMinutes: 5,
-      cookTimeMinutes: 5,
-    },
-  ];
 
   return (
     <div className="xl:px-24 px-10">
@@ -59,7 +49,15 @@ export default function Home() {
               key={`${recipe.name}-${index}`}
               className="flex flex-col bg-orange-50 hover:scale-105 ease-in-out duration-200 xl:min-h-[600px] fancyGradient"
             >
-              <CardHeader>{/* image */}</CardHeader>
+              <CardHeader>
+                <img
+                  src={recipe.image}
+                  alt={recipe.name}
+                  width={500}
+                  height={500}
+                  className="bg-cover ronded-md shadow-xl"
+                />
+              </CardHeader>
               <CardContent className="uppercase lg:text-3xl relative font-bold line-clamp-2">
                 <p>{recipe.name}</p>
               </CardContent>

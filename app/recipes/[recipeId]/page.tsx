@@ -62,7 +62,7 @@ export default async function Page({
           </div>
         </div>
         <div className="py-4 mx-auto">
-          <img
+          <Image
             alt={recipe.name}
             src={recipe.image}
             width="400"

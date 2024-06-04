@@ -31,7 +31,7 @@ export default function RecipeList({ recipes }: { recipes: Recipe[] }) {
           <Link href={`/recipes/${recipe.id}`} key={`${recipe.name}-${index}`}>
             <Card className="flex flex-col bg-orange-50 hover:scale-105 ease-in-out duration-200 xl:min-h-[600px] fancyGradient">
               <CardHeader>
-                <img
+                <Image
                   src={recipe.image}
                   alt={recipe.name}
                   width={500}
